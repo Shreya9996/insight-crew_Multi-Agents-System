@@ -1,0 +1,58 @@
+research_task:
+  description: >
+    Research the following topic:
+
+    {topic}
+
+    Collect important information related to the topic.
+    Identify major facts, recent developments, opportunities,
+    challenges, and other information that would be useful
+    for making a decision.
+
+    Organize the findings clearly so that another agent
+    can analyze them.
+
+  expected_output: >
+    A structured research summary containing the most
+    important facts, findings, opportunities, challenges,
+    and relevant information about the topic.
+
+
+data_analysis_task:
+  description: >
+    Analyze the research findings provided by the Research Agent.
+
+    Identify important numbers, statistics, trends, patterns,
+    comparisons, opportunities, and risks.
+
+    Convert the research findings into useful analytical
+    insights that can support a final decision.
+
+  expected_output: >
+    A structured data analysis containing important numbers,
+    trends, patterns, comparisons, opportunities, risks,
+    and actionable insights.
+
+
+report_task:
+  description: >
+    Create a final decision report using the research findings
+    and data analysis.
+
+    The report should contain:
+
+    1. Executive Summary
+    2. Topic Overview
+    3. Key Research Findings
+    4. Data and Trends
+    5. Opportunities
+    6. Risks and Challenges
+    7. Final Insights
+    8. Recommendation
+
+    Make the report clear, professional, and easy to understand.
+
+  expected_output: >
+    A professional, structured, evidence-based decision report
+    with clear findings, analysis, opportunities, risks,
+    insights, and a final recommendation.

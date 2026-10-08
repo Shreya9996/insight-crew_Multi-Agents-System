@@ -1,0 +1,26 @@
+[project]
+name = "insight_crew"
+version = "0.1.0"
+description = "Insight_Crew using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=1.15.23,<2.0.0",
+    "tavily-python>=0.8.5",
+]
+
+[project.scripts]
+insight_crew = "insight_crew.main:run"
+run_crew = "insight_crew.main:run"
+train = "insight_crew.main:train"
+replay = "insight_crew.main:replay"
+test = "insight_crew.main:test"
+run_with_trigger = "insight_crew.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+project_id = "bbccb337-feb4-4c0e-82f0-50dd40a4efdb"
