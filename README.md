@@ -1,54 +1,162 @@
-# InsightCrew Crew
+# 🔎 InsightCrew — Multi-Agent AI Research & Decision Intelligence System
 
-Welcome to the InsightCrew Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+> A multi-agent AI system that researches real-world topics using web search, analyzes the collected information, and generates a structured decision-oriented report.
 
-## Installation
+InsightCrew is an AI-powered research and decision intelligence system built using **CrewAI**. It uses specialized AI agents that collaborate sequentially to transform a user's research question into a structured report.
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+The system combines **CrewAI multi-agent orchestration**, **Ollama local LLMs**, and **Tavily Web Search** to perform research using up-to-date web information.
 
-First, if you haven't already, install uv:
+---
 
-```bash
-pip install uv
-```
+## 🚀 Overview
 
-Next, navigate to your project directory and install the dependencies:
+Traditional AI assistants can answer questions, but complex research tasks often require multiple steps:
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+1. Finding relevant information
+2. Collecting current data
+3. Identifying trends and patterns
+4. Analyzing opportunities and risks
+5. Producing a structured conclusion
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+InsightCrew divides these responsibilities among specialized AI agents.
 
-- Modify `src/insight_crew/config/agents.yaml` to define your agents
-- Modify `src/insight_crew/config/tasks.yaml` to define your tasks
-- Modify `src/insight_crew/crew.py` to add your own logic, tools and specific args
-- Modify `src/insight_crew/main.py` to add custom inputs for your agents and tasks
+### Example Query
 
-## Running the Project
+```text
+Should a startup invest in India's EV charging market in 2027?
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
 
-```bash
-$ crewai run
-```
+                    ┌─────────────────────┐
+                    │        User         │
+                    │   Research Query    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   Research Agent    │
+                    │                     │
+                    │ Researches topic   │
+                    │ using web search    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │  Tavily Web Search  │
+                    │                     │
+                    │ Current web data    │
+                    │ and sources         │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Data Analyst Agent  │
+                    │                     │
+                    │ Numbers             │
+                    │ Trends              │
+                    │ Patterns            │
+                    │ Risks               │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │    Report Agent     │
+                    │                     │
+                    │ Combines research   │
+                    │ and analysis        │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   Final Report      │
+                    │                     │
+                    │ Insights + Risks +  │
+                    │ Recommendation      │
+                    └─────────────────────┘
 
-This command initializes the Insight_Crew Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+🤖 Multi-Agent Workflow
 
-## Understanding Your Crew
+InsightCrew currently uses three specialized agents.
 
-The Insight_Crew Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+1. 🔎 Research Agent
+Role
 
-## Support
+Research Specialist
 
-For support, questions, or feedback regarding the InsightCrew Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+Responsibilities
+Understand the user's research topic
+Search the web for relevant information
+Collect recent facts and developments
+Identify opportunities and challenges
+Organize research findings
+Tool
 
-Let's create wonders together with the power and simplicity of crewAI.
+Tavily Web Search
+
+The Research Agent can dynamically call the web search tool when external information is required.
+
+2. 📊 Data Analyst Agent
+Role
+
+Data Analysis Specialist
+
+Responsibilities
+Analyze research findings
+Identify important numbers and statistics
+Find trends and patterns
+Compare relevant information
+Identify opportunities and risks
+Convert research into useful analytical insights
+
+
+3. 📝 Report Agent
+Role
+
+Senior Decision Report Analyst
+
+Responsibilities :
+Combine research and analysis
+Organize findings into a professional report
+Highlight opportunities and risks
+Provide final insights
+Generate a decision-oriented recommendation
+
+
+🛠️ Tech Stack
+
+Technology	Purpose
+Python	Core programming language
+CrewAI	Multi-agent orchestration
+Ollama	Local LLM runtime
+Llama 3.2	Local language model
+Tavily	Web search and research
+YAML	Agent and task configuration
+UV	Python environment and dependency management
+
+
+insight_crew/
+│
+├── src/
+│   └── insight_crew/
+│       │
+│       ├── config/
+│       │   ├── agents.yaml
+│       │   └── tasks.yaml
+│       │
+│       ├── tools/
+│       │   ├── __init__.py
+│       │   └── web_search_tool.py
+│       │
+│       ├── __init__.py
+│       ├── crew.py
+│       └── main.py
+│
+├── tests/
+│
+├── .env
+├── .gitignore
+├── pyproject.toml
+├── uv.lock
+└── README.md
+
+
