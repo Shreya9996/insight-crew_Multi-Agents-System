@@ -16,6 +16,22 @@ research_task:
     A structured research summary containing the most
     important facts, findings, opportunities, challenges,
     and relevant information about the topic.
+    
+
+competitor_analysis_task:
+  description: >
+    Analyze competitors relevant to the following topic:
+    {topic}
+
+    Use the available web search tool to identify relevant
+    competitors. Compare their offerings, target customers,
+    strengths, weaknesses, market positioning, and strategies.
+    Include source URLs for important findings. Do not invent
+    competitor details or unavailable pricing information.
+  expected_output: >
+    A competitor analysis containing competitor names,
+    comparison criteria, strengths, weaknesses, market
+    positioning, relevant source URLs, and information gaps.
 
 
 data_analysis_task:
@@ -34,25 +50,107 @@ data_analysis_task:
     and actionable insights.
 
 
+
+fact_checking_task:
+  description: >
+    Fact-check the research, competitor analysis, and data
+    analysis findings for this topic: {topic}
+
+    Review the actual outputs of all preceding tasks.
+    Extract the important statistics, policy claims, dates,
+    market projections, and competitor-related claims.
+
+    For each claim:
+    1. Identify the exact claim and its geographic scope.
+    2. Check whether the provided source directly supports it.
+    3. Use the web search tool to investigate important claims.
+    4. Distinguish national policies from state or city policies.
+    5. Identify outdated, conflicting, or unsupported information.
+    6. Provide the relevant source URL when available.
+
+    Label each claim as Supported, Contradicted, or Unverified.
+    Do not mark a claim as Supported based only on a search
+    result title or an unrelated source. Never invent evidence.
+
+  expected_output: >
+    A structured fact-check report with the claim, original
+    source, verification status, supporting evidence, source URL,
+    geographic scope, and explanation of any uncertainty.
+
+
+decision_task:
+  description: >
+    Make a practical, evidence-based recommendation for this topic: {topic}
+
+    Use the outputs from the Research Agent, Competitor Agent,
+    Data Analyst Agent, and Fact Checker Agent.
+
+    Carefully follow the fact-checking results:
+    - Treat Supported claims as evidence only when the cited source
+      directly supports the claim.
+    - Do not present Contradicted claims as facts.
+    - Clearly label Unverified claims as uncertain.
+    - Do not convert state or city policies into national policies.
+    - Do not invent statistics, market projections, competitor details,
+      sources, or URLs.
+
+    Compare the available options, potential benefits, risks,
+    assumptions, and practical challenges.
+
+    If important evidence is missing, explicitly mention what
+    additional information is needed before making a strong decision.
+
+    Give a clear recommendation and explain the reasoning behind it.
+
+  expected_output: >
+    A structured decision analysis containing:
+    1. Decision question
+    2. Evidence-backed findings
+    3. Supported, contradicted, and unverified claims
+    4. Options and trade-offs
+    5. Risks and assumptions
+    6. Final recommendation with reasoning
+    7. Missing information and limitations
+
+
 report_task:
   description: >
-    Create a final decision report using the research findings
-    and data analysis.
+    Create a professional, evidence-based final report on this topic: {topic}
 
-    The report should contain:
 
+    Use the outputs from all five preceding tasks:
+    Research, Competitor Analysis, Data Analysis, Fact Checking,
+    and Decision Analysis.
+
+    Follow these rules strictly:
+    - Preserve the Fact Checker's verification status for important claims.
+    - Include Supported claims with their relevant source URLs when available.
+    - Clearly mark Unverified claims as unverified.
+    - Do not present Contradicted claims as facts.
+    - Never invent statistics, dates, market projections, competitor
+      details, citations, or source URLs.
+    - Keep national, state, and city-level policies clearly separate.
+    - If evidence is insufficient, explain the limitation instead
+      of making a confident unsupported statement.
+    - Keep facts, estimates, assumptions, and recommendations distinct.
+
+    Organize the report using these sections:
     1. Executive Summary
     2. Topic Overview
     3. Key Research Findings
-    4. Data and Trends
-    5. Opportunities
-    6. Risks and Challenges
-    7. Final Insights
-    8. Recommendation
+    4. Competitor Analysis
+    5. Data and Trends
+    6. Fact-Checking Results
+    7. Opportunities
+    8. Risks and Challenges
+    9. Final Recommendation
+    10. Limitations and Further Research
 
-    Make the report clear, professional, and easy to understand.
+    Write clearly and avoid repeating the same finding across sections.
+    
 
   expected_output: >
-    A professional, structured, evidence-based decision report
-    with clear findings, analysis, opportunities, risks,
-    insights, and a final recommendation.
+    A complete Markdown report with all ten sections, evidence-backed
+    findings, source URLs where available, transparent uncertainty,
+    competitor comparisons based on available evidence, and a practical
+    final recommendation.
