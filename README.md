@@ -59,99 +59,264 @@ InsightCrew uses multiple specialized AI agents to research a given topic, analy
                  Final Decision Report
 ```
 
----
 
-## 🔄 Agent Workflow
+# 🔍 InsightCrew — Multi-Agent AI Research & Decision Intelligence System
+
+An AI-powered multi-agent research system built using **CrewAI** and **Google Gemini** that researches a given topic, analyzes competitors, evaluates evidence, fact-checks claims, and generates a structured research report to support better decision-making.
+
+## 🚀 Overview
+
+InsightCrew automates the research and analysis process using multiple specialized AI agents. Each agent performs a specific task and contributes to a final research report.
+
+Instead of relying on a single AI agent, InsightCrew divides the workflow into specialized roles to improve research organization, evidence evaluation, and decision support.
+
+## ✨ Key Features
+
+* 🤖 **Multi-Agent Architecture** — Multiple specialized AI agents collaborate on one research task.
+* 🔎 **Web Research** — Searches the web for relevant information and sources.
+* 🏢 **Competitor Analysis** — Identifies competitors and compares their offerings.
+* 📊 **Data Analysis** — Organizes available findings and identifies useful insights.
+* ✅ **Fact Checking** — Reviews claims and distinguishes verified facts from uncertain information.
+* 🧠 **Decision Intelligence** — Generates recommendations based on collected evidence.
+* 📝 **Automated Report Generation** — Produces a structured report in Markdown format.
+* 🔗 **Source-Based Research** — Aims to include source URLs to support findings.
+
+## 🏗️ System Architecture
+
+InsightCrew uses a sequential multi-agent workflow.
 
 ```text
-User Topic
-    │
-    ▼
-Research Agent
-    │
-    ├── Web Search
-    ├── Current Information
-    ├── Facts
-    ├── Opportunities
-    └── Challenges
-    │
-    ▼
-Data Analyst Agent
-    │
-    ├── Numbers
-    ├── Trends
-    ├── Comparisons
-    ├── Risks
-    └── Insights
-    │
-    ▼
-Report Agent
-    │
-    ├── Executive Summary
-    ├── Research Findings
-    ├── Data & Trends
-    ├── Opportunities
-    ├── Risks
-    ├── Insights
-    └── Recommendation
-    │
-    ▼
-Final Report
+                 ┌──────────────────────┐
+                 │    Research Topic    │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │   Research Agent     │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │ Competitor Agent     │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │ Data Analyst Agent   │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │ Fact Checker Agent   │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │ Decision Agent       │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │    Report Agent      │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │ output/output.md     │
+                 └──────────────────────┘
 ```
 
----
+## 👥 AI Agents
 
-## 🤖 AI Agents
+| Agent              | Responsibility                                                         |
+| ------------------ | ---------------------------------------------------------------------- |
+| Research Agent     | Collects background information and relevant research findings.        |
+| Competitor Agent   | Identifies competitors and compares products, services, or strategies. |
+| Data Analyst Agent | Organizes research findings and analyzes available information.        |
+| Fact Checker Agent | Evaluates claims and checks supporting evidence.                       |
+| Decision Agent     | Develops insights and recommendations from the findings.               |
+| Report Agent       | Compiles the final findings into a structured Markdown report.         |
 
-### 🔎 1. Research Agent
+## 🛠️ Technology Stack
 
-The Research Agent is responsible for collecting relevant information about the given topic.
+* **Python** — Core programming language
+* **CrewAI** — Multi-agent orchestration framework
+* **Google Gemini** — Large language model for AI agent reasoning
+* **DuckDuckGo Search** — Web search through the configured search tool
+* **uv** — Python dependency and project management
+* **Markdown** — Research report output format
 
-**Responsibilities:**
+## 📁 Project Structure
 
-- Search the web for current information
-- Collect important facts
-- Identify recent developments
-- Find opportunities
-- Identify challenges
-- Organize research findings
+```text
+insight_crew/
+│
+├── src/
+│   └── insight_crew/
+│       ├── config/
+│       │   ├── agents.yaml
+│       │   └── tasks.yaml
+│       │
+│       ├── tools/
+│       │   └── web_search_tool.py
+│       │
+│       ├── crew.py
+│       └── main.py
+│
+├── output/
+│   └── output.md
+│
+├── .env
+├── .gitignore
+├── pyproject.toml
+├── uv.lock
+└── README.md
+```
 
-The agent uses the **Tavily Web Search Tool** to access online information.
+## ⚙️ Installation and Setup
 
----
+### 1. Clone the Repository
 
-### 📊 2. Data Analyst Agent
+```bash
+git clone https://github.com/Shreya9996/insight-crew_Multi-Agents-System.git
+```
 
-The Data Analyst Agent analyzes the findings collected by the Research Agent.
+### 2. Navigate to the Project Directory
 
-**Responsibilities:**
+```bash
+cd insight-crew_Multi-Agents-System
+```
 
-- Identify important numbers
-- Analyze statistics
-- Detect trends and patterns
-- Perform comparisons
-- Identify opportunities
-- Identify risks
-- Generate analytical insights
+### 3. Install Python
 
----
+Use Python **3.11** for the development environment described in this project.
 
-### 📝 3. Report Agent
+Check your Python version:
 
-The Report Agent converts the research and analysis into a professional decision-oriented report.
+```bash
+python --version
+```
 
-The final report contains:
+### 4. Install uv
 
-1. Executive Summary
-2. Topic Overview
-3. Key Research Findings
-4. Data and Trends
-5. Opportunities
-6. Risks and Challenges
-7. Final Insights
-8. Recommendation
+If `uv` is not installed, install it using:
 
----
+```bash
+pip install uv
+```
+
+Verify the installation:
+
+```bash
+uv --version
+```
+
+### 5. Install Project Dependencies
+
+```bash
+uv sync
+```
+
+If you encounter environment issues, create a fresh virtual environment and install dependencies there.
+
+### 6. Configure Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Replace `your_gemini_api_key` with your actual Google Gemini API key.
+
+**Important:** Never commit your `.env` file or expose your API key on GitHub.
+
+### 7. Run the Project
+
+Run the CrewAI project using the project's configured entry point:
+
+```bash
+uv run run_crew
+```
+
+If your environment is already activated and the project environment needs to be explicitly selected, use:
+
+```powershell
+uv run --active --project "C:\path\to\insight_crew" run_crew
+```
+
+Enter your research topic when prompted:
+
+```text
+Enter Your Topic: Impact of Generative AI on Data Science Careers
+```
+
+The agents will process the topic according to their configured tasks.
+
+## 📄 Output
+
+The generated research report is saved at:
+
+```text
+output/output.md
+```
+
+The report can contain sections such as:
+
+* Research overview
+* Competitor analysis
+* Data-driven findings
+* Fact-checking results
+* Decision insights
+* Recommendations
+* Supporting source URLs
+
+The exact report structure depends on the agent and task configurations.
+
+## 🔄 Workflow
+
+1. The user provides a research topic.
+2. The Research Agent collects relevant information.
+3. The Competitor Agent analyzes the competitive landscape.
+4. The Data Analyst Agent organizes and evaluates available findings.
+5. The Fact Checker Agent reviews claims and supporting evidence.
+6. The Decision Agent develops recommendations.
+7. The Report Agent compiles the findings into `output/output.md`.
+
+## 🔐 Environment Variables
+
+| Variable         | Purpose                                  |
+| ---------------- | ---------------------------------------- |
+| `GEMINI_API_KEY` | Authenticates requests to Google Gemini. |
+
+Keep all API credentials private. Add `.env` to `.gitignore`:
+
+```gitignore
+.env
+.venv/
+__pycache__/
+*.py[cod]
+```
+
+## ⚠️ Limitations
+
+* AI-generated findings may contain inaccuracies and must be verified.
+* Web search results depend on source availability and search quality.
+* Source URLs should be checked to confirm that they support the associated claims.
+* Recommendations depend on the quality and completeness of the collected information.
+* Fact-checking by an AI agent does not guarantee that every claim is correct.
+
+## 🔮 Future Enhancements
+
+* Better source validation and citation handling
+* Improved research quality evaluation
+* Structured report export to PDF
+* User-configurable research depth
+* Enhanced competitor comparison
+* More robust error handling and retry mechanisms
+* Additional data sources and research tools
+
+
 
 ## 🛠️ Technologies Used
 
@@ -242,165 +407,8 @@ Should a startup invest in India's EV charging market in 2027?
 
 ---
 
-### 2. Research Agent Performs Web Search
 
-The Research Agent receives the topic and uses the Tavily Web Search Tool.
 
-```text
-User Topic
-     ↓
-Research Agent
-     ↓
-Tavily Web Search
-     ↓
-Search Results
-     ↓
-Research Findings
-```
-
----
-
-### 3. Data Analyst Processes the Research
-
-The research findings are passed to the next task.
-
-The Data Analyst Agent examines the information and identifies:
-
-```text
-Numbers
-Trends
-Patterns
-Comparisons
-Opportunities
-Risks
-Insights
-```
-
----
-
-### 4. Report Agent Generates Final Report
-
-The final agent combines the research and analysis.
-
-```text
-Research Findings
-        +
-Data Analysis
-        ↓
-   Report Agent
-        ↓
- Final Decision Report
-```
-
----
-
-## 🧠 CrewAI Process
-
-The current system uses a **sequential process**.
-
-```text
-Research Agent
-       ↓
-Data Analyst Agent
-       ↓
-Report Agent
-```
-
-Each task is completed before the next task begins.
-
-The workflow is configured using:
-
-```python
-Process.sequential
-```
-
----
-
-## 📋 Agent Configuration
-
-Agents are defined in:
-
-```text
-src/insight_crew/config/agents.yaml
-```
-
-Example:
-
-```yaml
-research_agent:
-  role: >
-    Research Specialist
-
-  goal: >
-    Conduct thorough research on the given topic and collect
-    relevant, reliable, and useful information.
-
-data_analyst_agent:
-  role: >
-    Data Analysis Specialist
-
-  goal: >
-    Analyze the research findings and identify important
-    data, trends, patterns, and insights.
-
-report_agent:
-  role: >
-    Senior Decision Report Analyst
-
-  goal: >
-    Combine research and data analysis into a clear,
-    structured, evidence-based final report.
-```
-
----
-
-## 📝 Task Configuration
-
-Tasks are defined in:
-
-```text
-src/insight_crew/config/tasks.yaml
-```
-
-The main tasks are:
-
-```text
-research_task
-      ↓
-data_analysis_task
-      ↓
-report_task
-```
-
-The topic is dynamically passed to the system using:
-
-```python
-inputs = {
-    "topic": user_topic
-}
-```
-
----
-
-## 🔑 Environment Variables
-
-Create a `.env` file in the project root.
-
-```env
-OLLAMA_BASE_URL=http://localhost:11434
-TAVILY_API_KEY=your_tavily_api_key
-```
-
-Never upload your actual `.env` file or API keys to GitHub.
-
-Create a `.env.example` file:
-
-```env
-OLLAMA_BASE_URL=http://localhost:11434
-TAVILY_API_KEY=your_tavily_api_key_here
-```
-
----
 
 ## 📦 Installation
 
