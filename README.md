@@ -1,4 +1,4 @@
-# 🔎 InsightCrew — Multi-Agent AI Research & Decision Intelligence System
+# 🔎 InsightCrew — Multi-Agent AI Research & Decision Intelligence System 
 
 An **AI-powered multi-agent research and decision intelligence system** built using **CrewAI, Python, Ollama, Llama 3.2, Tavily, and YAML-based agent configuration**.
 
